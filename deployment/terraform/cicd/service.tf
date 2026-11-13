@@ -32,13 +32,15 @@ resource "google_vertex_ai_reasoning_engine" "app" {
     identity_type   = "AGENT_IDENTITY"
 
     deployment_spec {
-      min_instances         = 1
+      # PoC sizing (local change): only applies at creation, since deployment_spec
+      # is in ignore_changes. After that the workflow deploy flags set the size.
+      min_instances         = 0
       max_instances         = 10
       container_concurrency = 9
 
       resource_limits = {
-        cpu    = "4"
-        memory = "8Gi"
+        cpu    = "1"
+        memory = "2Gi"
       }
 
       env {
