@@ -119,6 +119,12 @@ resource "github_repository_environment" "production_environment" {
   environment = "production"
   depends_on  = [github_repository.repo, data.github_repository.existing_repo]
 
+  # Local change (not in the agents-cli template): prod deploys wait for manual
+  # approval. 586996 = GitHub user sreekarun. Re-check after `scaffold upgrade`.
+  reviewers {
+    users = [586996]
+  }
+
   deployment_branch_policy {
     protected_branches     = false
     custom_branch_policies = true

@@ -90,8 +90,9 @@ to the same staging/prod projects as a separate Agent Runtime (display name
 - Runtimes use Agent Identity: don't pass `--service-account` in the workflows.
   Any Terraform change to the runtime resource resets its code to the placeholder;
   follow it with a pipeline deploy.
-- Runtime size comes from the workflow deploy flags (`--min-instances 0 --cpu 1
-  --memory 2Gi`, PoC sizing). Terraform ignores `deployment_spec` after creation.
+- Runtime size comes from the workflow deploy flags: Agent Runtime minimums for
+  the PoC (`--min-instances 0 --max-instances 1 --concurrency 3 --cpu 1
+  --memory 1Gi`). `service.tf` matches, but Terraform only uses it at creation.
 - Workflows set `GOOGLE_GENAI_USE_ENTERPRISE=true` and remove
   `GOOGLE_GENAI_USE_VERTEXAI` (both set raises an error), and set
   `GCSFS_EXPERIMENTAL_ZB_HNS_SUPPORT=false` (the bucket-type lookup 401s under
