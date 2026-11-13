@@ -91,8 +91,12 @@ to the same staging/prod projects as a separate Agent Runtime (display name
   Any Terraform change to the runtime resource resets its code to the placeholder;
   follow it with a pipeline deploy.
 - Runtime size comes from the workflow deploy flags: Agent Runtime minimums for
-  the PoC (`--min-instances 0 --max-instances 1 --concurrency 3 --cpu 1
-  --memory 1Gi`). `service.tf` matches, but Terraform only uses it at creation.
+  the PoC (`--max-instances 1 --concurrency 3 --cpu 1 --memory 1Gi`). Staging keeps
+  1 warm instance (`--min-instances 1`, ~$69/month) to avoid cold starts during
+  development; prod scales to zero (`--min-instances 0`). `service.tf` only
+  applies at creation.
+- Don't set `propagate_grounding_metadata=True` on the `AgentTool`: on Agent
+  Runtime the session store can't save the propagated metadata and the run crashes.
 - Workflows set `GOOGLE_GENAI_USE_ENTERPRISE=true` and remove
   `GOOGLE_GENAI_USE_VERTEXAI` (both set raises an error), and set
   `GCSFS_EXPERIMENTAL_ZB_HNS_SUPPORT=false` (the bucket-type lookup 401s under

@@ -106,7 +106,11 @@ Rules:
   related AI-news angle.""",
     tools=[
         get_current_date,
-        AgentTool(agent=news_researcher, propagate_grounding_metadata=True),
+        # Don't set propagate_grounding_metadata=True: on Agent Runtime the
+        # propagated metadata reaches VertexAiSessionService.append_event as a
+        # dict and the run crashes ('dict' object has no attribute 'model_dump').
+        # Sources are already in the researcher's text.
+        AgentTool(agent=news_researcher),
     ],
 )
 
