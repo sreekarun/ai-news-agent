@@ -1,0 +1,39 @@
+{
+  "eval_cases": [
+    {
+      "eval_case_id": "greeting",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "Hello, what can you help me with?"}]
+      }
+    },
+    {
+      "eval_case_id": "daily_briefing",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "Give me today's top AI news."}]
+      }
+    },
+    {
+      "eval_case_id": "topic_tracking",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "Anything new on AI regulation this week?"}]
+      }
+    },
+    {
+      "eval_case_id": "explainer",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "Explain what an open-weight model is and why recent releases matter."}]
+      }
+    },
+    {
+      "eval_case_id": "off_topic",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "What's a good recipe for banana bread?"}]
+      }
+    }
+  ]
+}
