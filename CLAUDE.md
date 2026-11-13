@@ -69,7 +69,8 @@ tracking, explainers, fact-checks). Sibling of `sreekarun/adk-chatbot`, deployed
 to the same staging/prod projects as a separate Agent Runtime (display name
 `ai-news-agent`).
 
-- `ai_news_agent/agent.py`: `root_agent` (editor) with `get_current_date` and
+- `ai_news_agent/agent.py`: `root_agent` (named `ai_news_agent`: that's the A2A card
+  name Agent Registry shows; keep it in sync with the manifest) with `get_current_date` and
   `AgentTool(news_researcher)`. `news_researcher` holds the built-in
   `google_search` + `url_context`. Built-in tools can't share an agent with
   function tools, so keep that split.

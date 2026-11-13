@@ -1,7 +1,7 @@
 """AI News Agent: source-cited briefings on AI industry news.
 
 Layout:
-  root_agent (briefing editor)
+  root_agent, named ai_news_agent (briefing editor)
     ├─ get_current_date      function tool, so "today" / "this week" are concrete
     └─ news_researcher       AgentTool wrapping Gemini's built-in google_search and
                              url_context. Built-in tools can't share an agent with
@@ -71,7 +71,9 @@ news_researcher = Agent(
 
 root_agent = Agent(
     # Keep in sync with create_params.root_agent_name in agents-cli-manifest.yaml.
-    name="root_agent",
+    # It's also the A2A agent card's name, which is how Agent Registry lists
+    # this agent (the scaffold default "root_agent" showed up there as-is).
+    name="ai_news_agent",
     model=_model(),
     description="Briefs users on the most important recent AI news, with sources.",
     instruction="""You are an AI news editor. You help people keep up with the AI industry:
